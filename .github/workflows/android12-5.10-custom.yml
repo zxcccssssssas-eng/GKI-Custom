@@ -27,7 +27,7 @@ on:
         description: >
           Enable LXC, Docker
       kernelsu:
-        required: false
+        required: true
         type: boolean
         description: >
           Enable KernelSU
