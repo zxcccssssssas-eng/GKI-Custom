@@ -38,7 +38,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
+    - name: Generate app token
+      id: app-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ vars.GITHUB_APP_ID }}
+        private-key: ${{ secrets.GITHUB_APP_PRIVATE_KEY }}
+    - name: Setup credentials to access github using app-token
+      run: |
+        git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf https://github.com/
     - name: Install Dependencies
       run: |
         sudo apt install repo wget -y
@@ -55,7 +63,7 @@ jobs:
       if: ${{ inputs.custom == true }}
       run: |
         cd $GITHUB_WORKSPACE
-        git config --global url.https://${GH_TOKEN}}@github.com/.insteadOf https://github.com/
+        
         git clone https://github.com/TapetalArray/GKI-Custom.git
         cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
         cd ./android-kernel/common
