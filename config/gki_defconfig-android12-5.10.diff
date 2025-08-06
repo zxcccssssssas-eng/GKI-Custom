@@ -1,7 +1,4 @@
 ❯ diff gki_defconfig-android12-5.10 arch/arm64/configs/gki_defconfig (from https://github.com/aosp-mirror/kernel_common/tree/android12-5.10-2024-05)
-1,2d0
-< CONFIG_SYSVIPC=y
-< CONFIG_POSIX_MQUEUE=y
 27d24
 < CONFIG_CGROUP_DEVICE=y
 31c28
