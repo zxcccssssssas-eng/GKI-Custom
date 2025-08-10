@@ -31,8 +31,8 @@ Change-Id: Ia3a4a81e6772796b3400fd13b89c6f3677e35872
 
 diff --git a/fs/overlayfs/util.c b/fs/overlayfs/util.c
 index 7eba49db7dd6..d3bb09b272cc 100644
---- a/fs/overlayfs/util.c
-+++ b/fs/overlayfs/util.c
+#--- a/fs/overlayfs/util.c
+#+++ b/fs/overlayfs/util.c
 @@ -140,9 +140,7 @@ void ovl_dentry_init_flags(struct dentry *dentry, struct dentry *upperdentry,
  bool ovl_dentry_weird(struct dentry *dentry)
  {
