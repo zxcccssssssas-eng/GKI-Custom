@@ -58,6 +58,7 @@ jobs:
         
         git clone https://github.com/zxcccssssssas-eng/GKI-Custom.git gki-patch
         cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
+        cat ./gki-patch/config/gki_defconfig-android12-5.10 >> ./android-kernel/common/build.config.gki.aarch64
         cd ./android-kernel/common
         git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
 
@@ -70,7 +71,7 @@ jobs:
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
-        BUILD_CONFIG=common/build.config.gki.aarch64 build/config.sh savedefconfig
+        BUILD_CONFIG= build/config.sh savedefconfig
         LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
 
     - name: Prepare artifacts
