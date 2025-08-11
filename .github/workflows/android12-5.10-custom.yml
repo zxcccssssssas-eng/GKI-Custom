@@ -73,7 +73,7 @@ jobs:
 
     - name: Build Kernel
       run: |
-        cd $GITHUB_WORKSPACE/android-kernel
+        cd android-kernel
         BUILD_CONFIG= build/config.sh savedefconfig
         LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
 
