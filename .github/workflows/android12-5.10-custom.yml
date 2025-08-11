@@ -58,9 +58,9 @@ jobs:
         
         git clone https://github.com/zxcccssssssas-eng/GKI-Custom.git gki-patch
         cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
-        cat ./gki-patch/config/gki_defconfig-android12-5.10 > ./android-kernel/build.config
+        cat ./gki-patch/config/gki_defconfig-android12-5.10 >> ./android-kernel/build.config.gki.aarch64
         cd ./android-kernel/common
-        git apply $GITHUB_WORKSPACEgki-patch/patchs/*.patch
+        git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
 
     - name: KernelSU
       if: ${{ inputs.kernelsu == true }}
