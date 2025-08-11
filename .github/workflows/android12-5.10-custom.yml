@@ -60,8 +60,7 @@ jobs:
         cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
         cat ./gki-patch/config/gki_defconfig-android12-5.10 > ./android-kernel/build.config
         cd ./android-kernel/common
-        
-        git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
+        git apply $GITHUB_WORKSPACEgki-patch/patchs/*.patch
 
     - name: KernelSU
       if: ${{ inputs.kernelsu == true }}
