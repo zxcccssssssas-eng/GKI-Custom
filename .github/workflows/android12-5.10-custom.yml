@@ -60,7 +60,7 @@ jobs:
         cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
         echo \n >> ./android-kernel/build.config.gki.aarch64
         cat ./gki-patch/config/gki_defconfig-android12-5.10 >> ./android-kernel/build.config.gki.aarch64
-        cat ./gki-patch/config/gki_defconfig-android12-5.10 > ./android-kernel/build.config
+        #cat ./gki-patch/config/gki_defconfig-android12-5.10 > ./android-kernel/build.config
 
         cd ./android-kernel/common
         git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
