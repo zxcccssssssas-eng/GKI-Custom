@@ -31,7 +31,6 @@ on:
         type: boolean
         description: >
           Enable KernelSU
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,7 +41,6 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt install repo wget -y
-
     - name: Sync the kernel source code
       run: |
         cd $GITHUB_WORKSPACE
@@ -50,33 +48,26 @@ jobs:
         cd android-kernel
         repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-${{ inputs.os_patch_level }}
         repo sync
-
     - name: Apply patches and configuration files
       if: ${{ inputs.custom == true }}
       run: |
         cd $GITHUB_WORKSPACE
         
         git clone https://github.com/zxcccssssssas-eng/GKI-Custom.git gki-patch
-        cp ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
-        #echo \n >> ./android-kernel/build.config.gki.aarch64
-        #cat ./gki-patch/config/gki_defconfig-android12-5.10 >> ./android-kernel/build.config.gki.aarch64
-        #cat ./gki-patch/config/gki_defconfig-android12-5.10 > ./android-kernel/build.config
-
+        cp --force ./gki-patch/config/gki_defconfig-android12-5.10 ./android-kernel/common/arch/arm64/configs/gki_defconfig
+        cat ./gki-patch/config/gki_defconfig-android12-5.10 >> ./android-kernel/common/build.config.gki.aarch64
         cd ./android-kernel/common
         git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
-
     - name: KernelSU
       if: ${{ inputs.kernelsu == true }}
       run: |
           cd $GITHUB_WORKSPACE/android-kernel
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-
     - name: Build Kernel
       run: |
-        cd android-kernel
-        BUILD_CONFIG= build/config.sh savedefconfig
+        cd $GITHUB_WORKSPACE/android-kernel
+        BUILD_CONFIG=common/build.config.gki.aarch64 build/config.sh savedefconfig
         LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
-
     - name: Prepare artifacts
       id: prepareArtifacts
       run: |
@@ -102,7 +93,6 @@ jobs:
         ./tools/mkbootimg/mkbootimg.py --header_version 4 --kernel out/android12-5.10/dist/Image.lz4 --ramdisk out/ramdisk --os_version ${{ inputs.os_version }} --os_patch_level ${{ inputs.os_patch_level }} -o $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot-lz4.img
         echo "Build boot-gz.img"
         ./tools/mkbootimg/mkbootimg.py --header_version 4 --kernel $GITHUB_WORKSPACE/Image.gz --ramdisk out/ramdisk --os_version ${{ inputs.os_version }} --os_patch_level ${{ inputs.os_patch_level }} -o $GITHUB_WORKSPACE/output/${{ inputs.version_name }}_${{ inputs.os_patch_level }}-boot-gz.img
-
     - name: Upload Image and Image.gz and boot.img
       uses: actions/upload-artifact@v4
       with:
