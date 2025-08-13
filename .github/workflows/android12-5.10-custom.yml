@@ -33,7 +33,7 @@ on:
           Enable KernelSU
 jobs:
   build:
-    runs-on: localhost
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
