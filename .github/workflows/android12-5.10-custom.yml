@@ -33,7 +33,7 @@ on:
           Enable KernelSU
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: codespaces-ee24d7
 
     steps:
     - uses: actions/checkout@v4
