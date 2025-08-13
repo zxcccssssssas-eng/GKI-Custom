@@ -44,10 +44,12 @@ jobs:
     - name: Sync the kernel source code
       run: |
         cd $GITHUB_WORKSPACE
-        mkdir android-kernel
+        #change upstream to esk
+        git clone https://github.com/zxcccssssssas-eng/android_kernel_xiaomi_mt6895.git android-kernel
+        #mkdir android-kernel
         cd android-kernel
-        repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-${{ inputs.os_patch_level }}
-        repo sync
+        #repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-${{ inputs.os_patch_level }}
+        #repo sync
     - name: Apply patches and configuration files
       if: ${{ inputs.custom == true }}
       run: |
