@@ -33,7 +33,7 @@ on:
           Enable KernelSU
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
