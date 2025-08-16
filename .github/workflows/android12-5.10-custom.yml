@@ -68,6 +68,17 @@ jobs:
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
+        echo "drivers/soc/qcom/cmd-db.ko
+        drivers/soc/qcom/mdt_loader.ko
+        drivers/gpu/drm/drm_vram_helper.ko
+        drivers/gpu/drm/drm_ttm_helper.ko
+        drivers/gpu/drm/vgem/vgem.ko
+        drivers/gpu/drm/vkms/vkms.ko
+        drivers/gpu/drm/udl/udl.ko
+        drivers/gpu/drm/ast/ast.ko
+        drivers/gpu/drm/msm/msm.ko
+        drivers/firmware/qcom-scm.ko
+        sound/soc/codecs/snd-soc-hdmi-codec.ko" >> common/android/gki_aarch64_modules
         BUILD_CONFIG=common/build.config.gki.aarch64 build/config.sh savedefconfig
         LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
     - name: Prepare artifacts
