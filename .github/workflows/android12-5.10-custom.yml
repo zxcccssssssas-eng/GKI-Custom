@@ -69,6 +69,101 @@ jobs:
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
+        echo "        mm/zsmalloc.ko
+
+        crypto/lzo.ko
+
+        crypto/lzo-rle.ko
+
+        drivers/phy/mediatek/phy-mtk-tphy.ko
+
+        drivers/phy/mediatek/phy-mtk-ufs.ko
+
+        drivers/phy/mediatek/phy-mtk-xsphy.ko
+
+        drivers/pwm/pwm-mtk-disp.ko
+
+        drivers/dma/mediatek/mtk-uart-apdma.ko
+
+        drivers/dma/mediatek/mtk-cqdma.ko
+
+        drivers/soc/mediatek/mtk-pmic-wrap.ko
+
+        drivers/regulator/mt6358-regulator.ko
+
+        drivers/regulator/mt6360-regulator.ko
+
+        drivers/reset/reset-ti-syscon.ko
+
+        drivers/tty/serial/8250/8250_mtk.ko
+
+        drivers/gpu/drm/mediatek/mediatek-drm.ko
+
+        drivers/block/zram/zram.ko
+
+        drivers/mfd/mt6360-core.ko
+
+        drivers/mfd/mt6397.ko
+
+        drivers/dma-buf/heaps/system_heap.ko
+
+        drivers/scsi/ufs/ufs-mediatek.ko
+
+        drivers/spi/spi-mt65xx.ko
+
+        drivers/net/usb/asix.ko
+
+        drivers/net/usb/ax88179_178a.ko
+
+        drivers/usb/phy/phy-generic.ko
+
+        drivers/usb/host/xhci-mtk-hcd.ko
+
+        drivers/usb/mtu3/mtu3.ko
+
+        drivers/input/keyboard/mtk-pmic-keys.ko
+
+        drivers/rtc/rtc-mt6397.ko
+
+        drivers/i2c/busses/i2c-mt65xx.ko
+
+        drivers/media/v4l2-core/v4l2-flash-led-class.ko
+
+        drivers/power/reset/reboot-mode.ko
+
+        drivers/power/reset/syscon-reboot-mode.ko
+
+        drivers/power/supply/bq27xxx_battery.ko
+
+        drivers/power/supply/bq27xxx_battery_i2c.ko
+
+        drivers/thermal/thermal-generic-adc.ko
+
+        drivers/watchdog/mtk_wdt.ko
+
+        drivers/mmc/core/pwrseq_simple.ko
+
+        drivers/mmc/host/mtk-sd.ko
+
+        drivers/mmc/host/cqhci.ko
+
+        drivers/leds/leds-pwm.ko
+
+        drivers/memory/mtk-smi.ko
+
+        drivers/iio/adc/mt6577_auxadc.ko
+
+        drivers/iio/buffer/industrialio-triggered-buffer.ko
+
+        drivers/iio/buffer/kfifo_buf.ko
+
+        drivers/perf/arm_dsu_pmu.ko
+
+        drivers/tee/tee.ko
+
+        net/wireless/cfg80211.ko
+
+        net/mac80211/mac80211.ko" > common/android/gki_aarch64_modules
         BUILD_CONFIG=common/build.config.gki.aarch64 build/config.sh savedefconfig
         LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
 
