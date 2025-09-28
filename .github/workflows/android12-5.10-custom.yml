@@ -204,3 +204,8 @@ jobs:
       with:
         name: AnyKernel3-${{ inputs.version_name }}_${{ inputs.os_patch_level }}
         path: ./AnyKernel3/*
+    - name: Upload config
+      uses: actions/upload-artifact@v4
+      with:
+        name: modules.order
+        path: /home/runner/work/GKI-Custom/GKI-Custom/android-kernel/out/android12-5.10/common/modules.order
